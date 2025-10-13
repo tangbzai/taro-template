@@ -17,6 +17,7 @@
   },
   "linter": {
     "enabled": true,
+    "includes": ["**", "!**/assets.ts"],
     "rules": {
       "recommended": true,
       "correctness": {

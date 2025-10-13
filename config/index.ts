@@ -1,4 +1,5 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import type { TaroPluginAssetsOptions } from 'taro-plugin-assets-indexer'
 
 import devConfig from './dev'
 import prodConfig from './prod'
@@ -17,7 +18,7 @@ export default defineConfig<'vite'>(async (merge, { mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: ['@tarojs/plugin-generator'],
+    plugins: ['@tarojs/plugin-generator', ['taro-plugin-assets-indexer', {} satisfies TaroPluginAssetsOptions]],
     defineConstants: {},
     copy: {
       patterns: [],

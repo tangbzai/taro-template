@@ -65,6 +65,9 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
+      taro-plugin-assets-indexer:
+        specifier: 0.0.1
+        version: 0.0.1(@tarojs/service@4.1.7)
     devDependencies:
       '@babel/core':
         specifier: ^7.24.4
@@ -4780,6 +4783,12 @@ packages:
   tar-stream@1.6.2:
     resolution: {integrity: sha512-rzS0heiNf8Xn7/mpdSVVSMAWAoy9bfb1WOTYC78Z0UQKeKa/CWS8FOq0lKGNa8DWKAn9gxjCvMLYc5PGXYlK2A==}
     engines: {node: '>= 0.8.0'}
+
+  taro-plugin-assets-indexer@0.0.1:
+    resolution: {integrity: sha512-XoVyg6F+IWZ6pa+SafZbZgDrXsGENso7H2E14ove+EYiXcDZ6DaQinXjYofhfB0R1HU8n6xroc0HeWug5oA4KA==}
+    engines: {node: ^20.10.0}
+    peerDependencies:
+      '@tarojs/service': ^3.0.0 || ^4.0.0
 
   terser@5.44.0:
     resolution: {integrity: sha512-nIVck8DK+GM/0Frwd+nIhZ84pR/BX7rmXMfYwyg+Sri5oGVE99/E3KvXqpC2xHFxyqXyGHTKBSioxxplrO4I4w==}
@@ -10364,6 +10373,10 @@ snapshots:
       readable-stream: 2.3.8
       to-buffer: 1.2.2
       xtend: 4.0.2
+
+  taro-plugin-assets-indexer@0.0.1(@tarojs/service@4.1.7):
+    dependencies:
+      '@tarojs/service': 4.1.7
 
   terser@5.44.0:
     dependencies:
