@@ -4,7 +4,7 @@ import devConfig from "./dev";
 import prodConfig from "./prod";
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig<"vite">(async (merge, { command, mode }) => {
+export default defineConfig<"vite">(async (merge, { mode }) => {
   const baseConfig: UserConfigExport<"vite"> = {
     projectName: "taro-template",
     date: "2025-10-10",
@@ -75,7 +75,7 @@ export default defineConfig<"vite">(async (merge, { command, mode }) => {
     },
   };
 
-  if (process.env.NODE_ENV === "development") {
+  if (mode === "development") {
     // 本地开发构建配置（不混淆压缩）
     return merge({}, baseConfig, devConfig);
   }
