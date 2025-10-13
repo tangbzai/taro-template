@@ -1,9 +1,10 @@
-import PAGE_MAP, { PageType, SUB_PACKAGES } from "./pageMap";
-const ALL_PAGES = Array.from(new Set(Object.values(PAGE_MAP).flat()));
+import PAGE_MAP, { type PageType, SUB_PACKAGES } from './pageMap'
+
+const ALL_PAGES = Array.from(new Set(Object.values(PAGE_MAP).flat()))
 
 /** 获取页面路径 */
-function getPagesPath(pages: PageType[]): PageType["path"][] {
-  return pages.map(({ path }) => path);
+function getPagesPath(pages: PageType[]): PageType['path'][] {
+  return pages.map(({ path }) => path)
 }
 
 export default defineAppConfig({
@@ -13,9 +14,9 @@ export default defineAppConfig({
     pages: getPagesPath(pages),
   })),
   window: {
-    backgroundTextStyle: "light",
-    navigationBarBackgroundColor: "#fff",
-    navigationBarTitleText: "WeChat",
-    navigationBarTextStyle: "black",
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'WeChat',
+    navigationBarTextStyle: 'black',
   },
-});
+})
