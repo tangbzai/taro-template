@@ -1,8 +1,22 @@
+import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import type { TaroPluginAssetsOptions } from 'taro-plugin-assets-indexer'
-
 import devConfig from './dev'
 import prodConfig from './prod'
+
+/** 创建子目录别名 */
+function createSubAlias(basePath: string, options?: { prefix?: string; includes?: string[]; excludes?: string[] }) {
+  /** 需要滤掉的目录/文件名称 */
+  /** 获取目标目录底下的名称列表，并过滤掉部分 */
+  const subDir = readdirSync(basePath).filter((name) => !options?.excludes?.includes(name))
+  /** 返回别名配置 */
+  return subDir.reduce((acc, dirName) => {
+    const key = `${options?.prefix || '@/'}${dirName.replace(/\.(j|t)sx?$/, '')}`
+    acc[key] = resolve(basePath, dirName)
+    return acc
+  }, {})
+}
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig<'vite'>(async (merge, { mode }) => {
@@ -23,6 +37,9 @@ export default defineConfig<'vite'>(async (merge, { mode }) => {
     copy: {
       patterns: [],
       options: {},
+    },
+    alias: {
+      ...createSubAlias(resolve(__dirname, '../src')),
     },
     framework: 'react',
     compiler: 'vite',
