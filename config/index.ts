@@ -33,7 +33,9 @@ export default defineConfig<'vite'>(async (merge, { mode }) => {
     sourceRoot: 'src',
     outputRoot: 'dist',
     plugins: ['@tarojs/plugin-generator', ['taro-plugin-assets-indexer', {} satisfies TaroPluginAssetsOptions]],
-    defineConstants: {},
+    defineConstants: {
+      TARO_APP_PROJECT_ENV: `"${process.env.TARO_APP_PROJECT_ENV}"`,
+    },
     copy: {
       patterns: [],
       options: {},

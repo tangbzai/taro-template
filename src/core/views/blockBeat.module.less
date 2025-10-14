@@ -1,0 +1,90 @@
+@import '../../global.less';
+
+.blockBeat {
+  position: absolute;
+  left: calc(50%);
+  transform: translateX(-50%);
+  width: 100%;
+  overflow: hidden;
+
+  &.center {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.move {
+  animation: move 5s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    left: -100px;
+  }
+
+  100% {
+    left: 110%;
+  }
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background: @mainColor;
+  animation: animate 0.5s linear infinite;
+  border-radius: 12px;
+}
+
+@keyframes animate {
+  17% {
+    border-bottom-right-radius: 12px;
+  }
+
+  25% {
+    transform: translateY(18px) rotate(22.5deg);
+  }
+
+  50% {
+    transform: translateY(36px) scale(1, 0.9) rotate(45deg);
+    border-bottom-right-radius: 80px;
+  }
+
+  75% {
+    transform: translateY(18px) rotate(67.5deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+.shadow {
+  width: 100px;
+  height: 10px;
+  background: #000;
+  opacity: 0.1;
+  position: absolute;
+  top: 118px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow 0.5s linear infinite;
+}
+
+@keyframes shadow {
+  50% {
+    transform: scale(1.2, 1);
+  }
+}
+
+.loadingText {
+  margin: 140px auto 0;
+  font-size: 24px;
+  text-align: center;
+  color: @mainColor;
+}

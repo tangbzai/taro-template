@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "removeComments": false,
     "preserveConstEnums": true,
     "experimentalDecorators": true,

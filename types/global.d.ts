@@ -26,4 +26,4 @@ declare namespace NodeJS {
   }
 }
 
-
+declare const TARO_APP_PROJECT_ENV: 'dev' | 'test' | 'prod'

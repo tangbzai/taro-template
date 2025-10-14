@@ -1,0 +1,30 @@
+@import "../../global.less";
+
+.glPage {
+  position: relative;
+  font-family: 'Noto Sans SC', 'Source Han Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', SimHei;
+  // dvh不支持时的备用方案
+  min-height: 100vh;
+  // 兼容 safari
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.pageContent {
+  position: relative;
+  overflow: auto;
+}
+
+.projectEnvTag {
+  font-size: 24px;
+  color: #fff;
+  position: fixed;
+  right: 20px;
+  top: 0px;
+  background: @mainColor;
+  padding: 4px 12px;
+  border-radius: 8px;
+  opacity: 0.5;
+  z-index: 10000;
+  pointer-events: none;
+}

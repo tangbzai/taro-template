@@ -1,0 +1,25 @@
+.loadingBackground {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: -webkit-fill-available;
+  z-index: 9;
+
+  .content,
+  .loading {
+    width: 100%;
+  }
+
+  .content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

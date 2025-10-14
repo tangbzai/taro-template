@@ -1,0 +1,113 @@
+@duration: 0.2s;
+@ease-timing-function: cubic-bezier(0.6, 0, 0.2, 1);
+@bounce-timing-function: cubic-bezier(0.4, -0.3, 0.6, 1.3);
+@masker-color: rgba(0, 0, 0, 0.32);
+@keyframes fade-in-masker {
+  from {
+    display: flex;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    display: flex;
+    visibility: visible;
+    background-color: @masker-color;
+  }
+}
+
+@keyframes fade-out-masker {
+  from {
+    display: flex;
+    visibility: visible;
+    background-color: @masker-color;
+  }
+  to {
+    display: none;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+._baseSheet(@justify: flex-end) {
+  display: flex;
+  flex-direction: column;
+  justify-content: @justify;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0);
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  &.show {
+    animation: fade-in-masker @duration @bounce-timing-function both;
+  }
+  &.hide {
+    animation: fade-out-masker @duration @bounce-timing-function both;
+  }
+}
+
+@keyframes translate-y-in-card {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes translate-y-out-card {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.bottomSheet {
+  ._baseSheet(flex-end);
+
+  &.show .dialogCard {
+    animation: translate-y-in-card @duration @ease-timing-function both;
+  }
+  &.hide .dialogCard {
+    animation: translate-y-out-card @duration @ease-timing-function forwards;
+  }
+}
+
+@keyframes scale-in-card {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out-card {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.3);
+  }
+}
+
+.centerSheet {
+  ._baseSheet(center);
+  align-items: center;
+
+  .dialogCard {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: auto;
+    box-sizing: content-box;
+  }
+
+  &.show .dialogCard {
+    animation: scale-in-card @duration @bounce-timing-function both;
+  }
+  &.hide .dialogCard {
+    animation: scale-out-card @duration @bounce-timing-function forwards;
+  }
+}
