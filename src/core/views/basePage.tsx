@@ -1,8 +1,8 @@
 import { ScrollView, View } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+import Taro, { useLoad, useUnload } from '@tarojs/taro'
 import classnames from 'classnames'
 import type { ForwardedRef, PropsWithChildren } from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Navigate, { GlobalBasePageListener } from '../global/navigate'
 import type { DialogContentBuilder } from './baseDialog'
 import { BaseDialog, DialogController, DialogStyleEnum } from './baseDialog'
@@ -63,15 +63,16 @@ export default function BasePage(props: PropsWithChildren<PageProps>) {
     }),
   )
 
-  useEffect(() => {
-    // 如果获取不到key，不注册任何路由监听
+  useLoad(() => {
     if (!key) return
     GlobalBasePageListener.bindPage(key, confirmDialogCt)
-    return () => {
-      Navigate.removeCompleterOfKey(key)
-      GlobalBasePageListener.removePageBind(key)
-    }
-  }, [confirmDialogCt, key])
+  })
+
+  useUnload(() => {
+    if (!key) return
+    Navigate.removeCompleterOfKey(key)
+    GlobalBasePageListener.removePageBind(key)
+  })
 
   const NoContent = (
     <View

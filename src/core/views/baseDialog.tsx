@@ -139,19 +139,30 @@ export class DialogController<T = void, E = void> {
 
   private onShowChange?: (show: boolean) => void
 
+  private immediatelyShowPromise?: () => void
   /**
    * 使用前需要在componentDidMount中，先绑定
    */
   async bindRefreshFn(refreshFn: () => void) {
     this.onShowChange = refreshFn
+    // 没有需要立即展示的弹窗
+    if (!this.immediatelyShowPromise) return
+    // 立即展示
+    this.immediatelyShowPromise()
+    this.immediatelyShowPromise = void 0
   }
   async removeBindRefreshFn() {
     this.onShowChange = undefined
   }
 
   async show(initialData?: T, customData?: E) {
+    // 绑定前调用了 show 方法
     if (this.onShowChange === undefined) {
-      throw '[ERROR!!] Must call controller.bind(this) before show.'
+      const { promise, resolve } = createPromise<ReturnType<typeof this.show>>()
+      this.immediatelyShowPromise = async () => {
+        resolve(await this.show(initialData, customData))
+      }
+      return promise
     }
     this.data = initialData
     this.config = customData
